@@ -14,9 +14,9 @@ public class GameField extends JPanel implements ActionListener{
     private final int DOT_SIZE = 16;
     private final int ALL_DOTS = 400;
     private Image dot;
-    private Image Strawberry;
-    private int StrawberryX;
-    private int StrawberryY;
+    private Image strawberry;
+    private int strawberryX;
+    private int strawberryY;
     private int[] x = new int[ALL_DOTS];
     private int[] y = new int[ALL_DOTS];
     private int dots;
@@ -38,7 +38,7 @@ public class GameField extends JPanel implements ActionListener{
 
     public void loadImages(){
         ImageIcon iis = new ImageIcon("Strawberry.png");
-        Strawberry = iis.getImage();
+        strawberry = iis.getImage();
         ImageIcon iid = new ImageIcon("dot.png");
         dot = iid.getImage();
     }
@@ -46,17 +46,17 @@ public class GameField extends JPanel implements ActionListener{
     public void initGame(){
         dots = 3;
         for (int i = 0; i < dots; i++) {
-            x[i] = 48 - i*DOT_SIZE;
+            x[i] = 48 - i * DOT_SIZE;
             y[i] = 48;
         }
-        timer = new Timer(250,this);
+        timer = new Timer(250, this);
         timer.start();
         createStrawberry();
     }
 
     public void createStrawberry(){
-        StrawberryX = new Random().nextInt(20)*DOT_SIZE;
-        StrawberryY = new Random().nextInt(20)*DOT_SIZE;
+        strawberryX = new Random().nextInt(20) * DOT_SIZE;
+        strawberryY = new Random().nextInt(20) * DOT_SIZE;
     }
 
 
@@ -64,21 +64,21 @@ public class GameField extends JPanel implements ActionListener{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(inGame){
-            g.drawImage(Strawberry,StrawberryX,StrawberryY,this);
+            g.drawImage(strawberry, strawberryX, strawberryY, this);
             for (int i = 0; i < dots; i++) {
-                g.drawImage(dot,x[i],y[i],this);
+                g.drawImage(dot, x[i], y[i], this);
             }
         } else{
             String str = "Game Over";
             g.setColor(Color.white);
-            g.drawString(str,125,SIZE/2);
+            g.drawString(str, 125, SIZE/2);
         }
     }
 
     public void move(){
         for (int i = dots; i > 0; i--) {
-            x[i] = x[i-1];
-            y[i] = y[i-1];
+            x[i] = x[i - 1];
+            y[i] = y[i - 1];
         }
         if(left){
             x[0] -= DOT_SIZE;
@@ -93,7 +93,7 @@ public class GameField extends JPanel implements ActionListener{
     }
 
     public void checkStraw(){
-        if(x[0] == StrawberryX && y[0] == StrawberryY){
+        if(x[0] == strawberryX && y[0] == strawberryY){
             dots++;
             createStrawberry();
         }
