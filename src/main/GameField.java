@@ -27,7 +27,6 @@ public class GameField extends JPanel implements ActionListener{
     private boolean down = false;
     private boolean inGame = true;
 
-
     public GameField(){
         setBackground(Color.black);
         loadImages();
@@ -134,7 +133,6 @@ public class GameField extends JPanel implements ActionListener{
         public void keyPressed(KeyEvent e) {
             super.keyPressed(e);
             int key = e.getKeyCode();
-
             if(key == KeyEvent.VK_RIGHT && !left){
                 right = true;
                 up = false;
